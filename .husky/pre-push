@@ -1,5 +1,2 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
 # Just ensure the build works (less strict during development)
-bun run build
+npm run build
