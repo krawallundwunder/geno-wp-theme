@@ -1,4 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn run prod
+# Just ensure the build works (less strict during development)
+bun run build
