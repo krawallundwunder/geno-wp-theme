@@ -4,6 +4,29 @@ namespace Flynt\Components\ModulTeamSection;
 
 
 add_filter('Flynt/addComponentData?name=ModulTeamSection', function ($data) {
+  $args = [
+    'post_type' => 'team_member',
+    'posts_per_page' => -1,
+    'post_status' => 'publish',
+    'meta_query' => [
+      [
+        'key' => 'team_member_is_shown',
+        'value' => '1',
+        'compare' => '=='
+      ]
+    ]
+  ];
+
+  $teamMembers = get_posts($args);
+
+  if (!empty($teamMembers)) {
+    foreach ($teamMembers as $member) {
+      $member->fields = get_fields($member->ID);
+    }
+  }
+
+  $data['teamMembers'] = $teamMembers;
+
   return $data;
 });
 
@@ -37,68 +60,6 @@ function getACFLayout()
         'delay' => 0,
         'media_upload' => 0,
         'instructions' => __('Textinhalt des Blocks.', 'flynt'),
-      ],
-      [
-        'label' => 'Team-Mitglieder',
-        'name' => 'teamMembersTab',
-        'type' => 'tab',
-      ],
-      [
-        'label' => 'Team-Mitglieder',
-        'name' => 'teamMembers',
-        'type' => 'repeater',
-        'min' => 1,
-        'layout' => 'block',
-        'button_label' => 'Mitglied hinzufügen',
-        'sub_fields' => [
-          [
-            'label' => 'Profilbild',
-            'name' => 'image',
-            'type' => 'image',
-            'return_format' => 'array',
-            'preview_size' => 'thumbnail',
-            'library' => 'all',
-            'wrapper' => [
-              'width' => '33.33%'
-            ],
-          ],
-          [
-            'label' => 'Name',
-            'name' => 'name',
-            'type' => 'text',
-            'instructions' => __('Hier kannst du einen Namen eingeben.', 'flynt'),
-            'wrapper' => [
-              'width' => '33.33%'
-            ],
-          ],
-          [
-            'label' => 'Position',
-            'name' => 'position',
-            'type' => 'text',
-            'instructions' => __('Hier kannst du die Position eingeben.', 'flynt'),
-            'wrapper' => [
-              'width' => '33.33%'
-            ],
-          ],
-          [
-            'label' => 'Twitter/X URL',
-            'name' => 'twitterUrl',
-            'type' => 'url',
-            'instructions' => __('Hier kannst du die dazugehörige Twitter/X URL eingeben.', 'flynt'),
-            'wrapper' => [
-              'width' => '50%'
-            ],
-          ],
-          [
-            'label' => 'LinkedIn URL',
-            'name' => 'linkedinUrl',
-            'type' => 'url',
-            'instructions' => __('Hier kannst du die dazugehörige LinkedIn URL eingeben.', 'flynt'),
-            'wrapper' => [
-              'width' => '50%'
-            ],
-          ],
-        ],
       ],
     ],
   ];
