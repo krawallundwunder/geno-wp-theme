@@ -20,7 +20,7 @@
 						{# Image Container #}
 						<a href="{{ post.link|e('esc_url') }}" class="block overflow-hidden aspect-video">
 							{% if post.thumbnail %}
-								<img class="w-full h-full object-cover transition-transform duration-500" src="{{ post.thumbnail.src|resizeDynamic(768, 512, 'center') }}" alt="{{ post.thumbnail.alt|e ?: post.title }}" loading="lazy">
+								<img class="w-full h-full object-cover transition-transform duration-500" src="{{ post.thumbnail.src|resizeDynamic(768, 512, 'center') }}" srcset="{{ post.thumbnail.src|resizeDynamic(384, 256, 'center') }} 384w, {{ post.thumbnail.src|resizeDynamic(768, 512, 'center') }} 768w, {{ post.thumbnail.src|resizeDynamic(1024, 683, 'center') }} 1024w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" alt="{{ post.thumbnail.alt|e ?: post.title }}" loading="lazy">
 							{% else %}
 								<div class="w-full h-full bg-slate-100 flex items-center justify-center">
 									<span class="text-slate-400">No Image</span>
