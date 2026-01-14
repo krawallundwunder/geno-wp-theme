@@ -15,11 +15,11 @@
 			<figure class="{{ sizeClass }} mx-auto">
 				{% if image.post_mime_type == 'image/svg+xml' %}
 					<div class="relative">
-						<img class="h-auto w-full max-h-[900px] object-cover" src="{{ image.src }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt|e }}" loading="lazy"/>
+						<img class="h-auto w-full max-h-[700px] object-cover object-center bg-no-repeat" src="{{ image.src }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt|e }}" loading="lazy"/>
 						<div class="absolute inset-0 bg-black opacity-60"></div>
 					</div>
 				{% else %}
-					<img class="h-auto w-full max-h-[900px] object-cover" src="{{ image.src|resizeDynamic(768) }}" srcset="{{ image.src|resizeDynamic(640) }} 640w, {{ image.src|resizeDynamic( 768 ) }} 768w, {{ image.src|resizeDynamic(1024) }} 1024w, {{ image.src|resizeDynamic( 1366 ) }} 1366w, {{ image.src|resizeDynamic(1920) }} 1920w" sizes="(max-width: 768px) 100vw, {{ options.size == 'full' ? '100vw' : '90vw' }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt|e }}" loading="lazy"/>
+					<img class="h-auto w-full max-h-[700px] object-cover" src="{{ image.src|resizeDynamic(768) }}" srcset="{{ image.src|resizeDynamic(640) }} 640w, {{ image.src|resizeDynamic( 768 ) }} 768w, {{ image.src|resizeDynamic(1024) }} 1024w, {{ image.src|resizeDynamic( 1366 ) }} 1366w, {{ image.src|resizeDynamic(1920) }} 1920w" sizes="(max-width: 768px) 100vw, {{ options.size == 'full' ? '100vw' : '90vw' }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt|e }}" loading="lazy"/>
 					<div class="absolute inset-0 bg-black opacity-60"></div>
 				{% endif %}
 
