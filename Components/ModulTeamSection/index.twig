@@ -12,7 +12,7 @@
 
 							<div class="w-40 h-40 lg:w-48 lg:h-48 mb-6">
 								{% if member.fields.team_member_image %}
-									<img src="{{ member.fields.team_member_image|default(member.fields.team_member_image.src) }}" class="w-full h-full object-cover rounded-full" loading="lazy">
+									<img src="{{ member.fields.team_member_image.src }}" alt="{{member.post_title}}" class="w-full h-full object-cover rounded-full" loading="lazy">
 								{% else %}
 									<div class="w-full h-full rounded-full bg-linear-to-br from-purple-500 to-purple-700 flex items-center justify-center">
 										<svg class="w-24 h-24 text-white opacity-90" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

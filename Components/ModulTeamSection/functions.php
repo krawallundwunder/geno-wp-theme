@@ -20,6 +20,9 @@ add_filter('Flynt/addComponentData?name=ModulTeamSection', function ($data) {
   $teamMembers = get_posts($args);
 
   if (!empty($teamMembers)) {
+    $memberIds = wp_list_pluck($teamMembers, 'ID');
+    update_postmeta_cache($memberIds);
+
     foreach ($teamMembers as $member) {
       $member->fields = get_fields($member->ID);
     }
