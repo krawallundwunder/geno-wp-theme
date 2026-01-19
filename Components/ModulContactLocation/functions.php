@@ -213,6 +213,18 @@ function getACFLayout()
         ],
       ],
       [
+        'label' => __('Text Ausrichtung', 'flynt'),
+        'name' => 'textAlign',
+        'type' => 'select',
+        'choices' => [
+          'text-start' => __('Links', 'flynt'),
+          'text-center' => __('Zentriert', 'flynt'),
+        ],
+        'default_value' => 'text-start',
+        'instructions' => __('Wählen Sie die Ausrichtung des Textes.', 'flynt'),
+        'required' => 1,
+      ],
+      [
         'label' => 'Kontakt-Layout',
         'name' => 'contactLayout',
         'type' => 'select',

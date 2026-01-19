@@ -5,12 +5,7 @@
 
 			{# Header #}
 			{% if tag or title or description or buttons %}
-				{% include "templates/_partials/headings.twig" with {
-					tag: tag,
-					title: title,
-					description: description,
-					buttons: buttons
-				} %}
+				{% include "templates/_partials/headings.twig" with { tag, title, description, buttons, textAlign } %}
 			{% endif %}
 
 			{# Geprüft if any card has image + content #}

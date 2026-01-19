@@ -48,6 +48,18 @@ function getACFLayout(): array
         'type' => 'tab',
       ],
       [
+        'label' => __('Text Ausrichtung', 'flynt'),
+        'name' => 'textAlign',
+        'type' => 'select',
+        'choices' => [
+          'start' => __('Links', 'flynt'),
+          'center' => __('Zentriert', 'flynt'),
+        ],
+        'default_value' => 'start',
+        'instructions' => __('Wählen Sie die Ausrichtung des Textes.', 'flynt'),
+        'required' => 1,
+      ],
+      [
         'label' => __('Minimale Höhe (in px)', 'flynt'),
         'instructions' => __('Start-Höhe des iFrames. Wichtig, falls das automatische Anpassen nicht klappt.', 'flynt'),
         'name' => 'minHeight',
@@ -62,6 +74,7 @@ function getACFLayout(): array
         'default_value' => 0,
         'ui' => 1,
       ],
+
     ],
   ];
 }

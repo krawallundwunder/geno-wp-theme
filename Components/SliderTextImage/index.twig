@@ -9,7 +9,7 @@
 	<div class="container relative my-14" data-flow="layout">
 
 		{% if tag or title or description or buttons %}
-			{% include "templates/_partials/headings.twig" with {tag, title, description, buttons, textAlign:'text-center' } %}
+			{% include "templates/_partials/headings.twig" with {tag, title, description, buttons, textAlign: options.textAlign } %}
 		{% endif %}
 
 		{% if slides %}

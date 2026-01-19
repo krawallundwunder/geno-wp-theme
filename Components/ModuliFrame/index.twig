@@ -3,7 +3,7 @@
 
 		{% if tag or title or description %}
 			<div class="">
-				{% include "templates/_partials/headings.twig" with { tag, title, description, textAlign: 'text-center' } %}
+				{% include "templates/_partials/headings.twig" with { tag, title, description, textAlign: textAlign ? 'text-' ~ textAlign : null } %}
 			</div>
 		{% endif %}
 

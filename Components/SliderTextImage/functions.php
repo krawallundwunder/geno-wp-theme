@@ -132,6 +132,19 @@ function getACFLayout(): array
         'type' => 'group',
         'layout' => 'row',
         'sub_fields' => [
+          [
+            'label' => 'Text Ausrichtung',
+            'name' => 'textAlign',
+            'type' => 'button_group',
+            'choices' => [
+              'text-start' => __('Links', 'flynt'),
+              'text-center' => __('Zentriert', 'flynt'),
+            ],
+            'default_value' => 'text-start',
+            'allow_null' => 0,
+            'return_format' => 'value',
+            'layout' => 'horizontal',
+          ],
 
           [
             'label' => __('Autoplay aktivieren', 'flynt'),
