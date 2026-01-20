@@ -1,25 +1,19 @@
 <flynt-component name="ModulCardsRepeater">
-	<section class="cards-repeater py-16 bg-gray-50">
-		<div class="container mx-auto px-4 max-w-7xl">
 
+	<section class="cards-repeater py-16 bg-gray-50">
+		<div class="container mx-auto">
 			{% if tag or title or description or buttons %}
 				{% include "templates/_partials/headings.twig" with {
-					tag: tag,
-					title: title,
-					description: description,
-					buttons: buttons
-				} %}
+          tag: tag,
+          title: title,
+          description: description,
+          buttons: buttons
+        } %}
 			{% endif %}
 
-			{% set aspectRatioValue = aspectRatio ?? '16:9' %}
-			{% set aspectRatioClass = {
-				'4:3': 'aspect-[4/3]',
-				'16:9': 'aspect-video',
-			}[aspectRatioValue] ?? 'aspect-video' %}
-
-			{# Cards Grid #}
+			{# Tailwind Scan Support: lg:grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 #}
 			{% if cards %}
-				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-{{ cards|length <= 3 ? cards|length : 3 }} gap-6">
+				<div class="grid grid-cols-1 md:grid-cols-2 {{ gridClass}} gap-6">
 					{% for card in cards %}
 						{% set hasContent = card.title or card.description or card.cardButton %}
 						{% set hasImage = card.image %}
@@ -41,9 +35,7 @@
 
 							{# Case 2: Bild + Content (Image with Text Card) #}
 						{% elseif hasImage and hasContent %}
-							<div
-								class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full {% if hasLink %}hover:shadow-xl transition-all duration-300 hover:-translate-y-1{% endif %}">
-								{# Bildcontainer mit festem Aspect Ratio #}
+							<div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full {% if hasLink %}hover:shadow-xl transition-all duration-300 hover:-translate-y-1{% endif %}">
 								<div class="overflow-hidden bg-gray-200 {{ aspectRatioClass }} shrink-0 relative">
 									{% if hasLink %}
 										<a href="{{ card.cardButton.url }}" {% if card.cardButton.target %} target="{{ card.cardButton.target }}" {% endif %} class="block h-full w-full group">
@@ -54,19 +46,14 @@
 									{% endif %}
 								</div>
 
-								{# Content Bereich #}
 								<div class="p-6 grow flex flex-col justify-between">
 									{% if card.title or card.description %}
 										<div class="mb-4">
 											{% if card.title %}
-												<h3 class="text-xl font-bold text-gray-900 mb-3">
-													{{ card.title }}
-												</h3>
+												<h3 class="text-xl font-bold text-gray-900 mb-3">{{ card.title }}</h3>
 											{% endif %}
 											{% if card.description %}
-												<div class="text-gray-600 prose prose-sm max-w-none">
-													{{ card.description }}
-												</div>
+												<div class="text-gray-600 prose prose-sm max-w-none">{{ card.description }}</div>
 											{% endif %}
 										</div>
 									{% endif %}
@@ -74,11 +61,11 @@
 									{% if hasLink %}
 										<div class="mt-auto pt-4">
 											{% include "templates/_partials/button.twig" with {
-												text: card.cardButton.title,
-												link: card.cardButton.url,
-												target: card.cardButton.target,
-												variant: 'secondary',
-											} %}
+                        text: card.cardButton.title,
+                        link: card.cardButton.url,
+                        target: card.cardButton.target,
+                        variant: 'secondary',
+                      } %}
 										</div>
 									{% endif %}
 								</div>
@@ -91,14 +78,10 @@
 									{% if card.title or card.description %}
 										<div class="mb-4">
 											{% if card.title %}
-												<h3 class="text-xl font-bold text-gray-900 mb-3">
-													{{ card.title }}
-												</h3>
+												<h3 class="text-xl font-bold text-gray-900 mb-3">{{ card.title }}</h3>
 											{% endif %}
 											{% if card.description %}
-												<div class="text-gray-600 prose prose-sm max-w-none">
-													{{ card.description }}
-												</div>
+												<div class="text-gray-600 prose prose-sm max-w-none">{{ card.description }}</div>
 											{% endif %}
 										</div>
 									{% endif %}
@@ -106,11 +89,11 @@
 									{% if hasLink %}
 										<div class="mt-auto pt-4">
 											{% include "templates/_partials/button.twig" with {
-												text: card.cardButton.title,
-												link: card.cardButton.url,
-												target: card.cardButton.target,
-												variant: 'secondary',
-											} %}
+                        text: card.cardButton.title,
+                        link: card.cardButton.url,
+                        target: card.cardButton.target,
+                        variant: 'secondary',
+                      } %}
 										</div>
 									{% endif %}
 								</div>

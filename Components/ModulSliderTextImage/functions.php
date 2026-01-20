@@ -107,12 +107,11 @@ function getACFLayout(): array
             'type' => 'select',
             'instructions' => __('Wählen Sie eine Hintergrundfarbe für diesen Abschnitt aus.', 'flynt'),
             'choices' => [
-              'bg-white' => 'Weiß',
-              'bg-gray-100' => 'Hellgrau',
-              'bg-gray-200' => 'Grau',
+              'bg-primary/20' => 'Primary',
+              'bg-secondary/20' => 'Secondary',
               'bg-black' => 'Schwarz',
             ],
-            'default_value' => 'bg-white',
+            'default_value' => 'bg-primary/20',
             'allow_null' => 0,
           ],
         ]

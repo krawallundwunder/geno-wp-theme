@@ -1,8 +1,7 @@
 <flynt-component name="ModulSliderTextImage" load:on="visible" class="componentSpacing">
 	{% set backgroundColorConfig = {
-    'bg-white': { 'design': 'yellow', 'text': 'text-black' },
-    'bg-gray-100': { 'design': 'gray', 'text': 'text-black' },
-    'bg-gray-200': { 'design': 'gray-dark', 'text': 'text-black' },
+    'bg-primary/20': { 'design': 'gray', 'text': 'text-black' },
+    'bg-secondary/20': { 'design': 'gray-dark', 'text': 'text-black' },
     'bg-black': { 'design': 'black', 'text': 'text-white' },
   } %}
 	<script type="application/json">{{ jsonData|json_encode(constant('JSON_HEX_TAG') b-or constant('JSON_HEX_APOS') b-or constant('JSON_HEX_AMP') b-or constant('JSON_HEX_QUOT'))|raw }}</script>

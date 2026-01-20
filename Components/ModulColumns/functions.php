@@ -45,17 +45,10 @@ add_filter('Flynt/addComponentData?name=ModulColumns', function ($data) {
     }
   }
 
-  if (!empty($data['options']['aspectRatio'])) {
-    $data['aspectRatio'] = $data['options']['aspectRatio'];
-  }
-
-  if (!empty($data['options']['textAlignment'])) {
-    $data['textAlignment'] = $data['options']['textAlignment'];
-  }
-
-  if (!empty($data['options']['isImageRounded'])) {
-    $data['isImageRounded'] = $data['options']['isImageRounded'];
-  }
+  $ratio = $data['options']['aspectRatio'] ?? '16:9';
+  $data['aspectRatioClass'] = ($ratio === '4:3') ? 'aspect-[4/3]' : 'aspect-video';
+  $data['textAlignmentClass'] = 'text-' . ($data['options']['textAlignment'] ?? 'start');
+  $data['isImageRounded'] = $data['options']['isImageRounded'] ?? false;
 
   return $data;
 });

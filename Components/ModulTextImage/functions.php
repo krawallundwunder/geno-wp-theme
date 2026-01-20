@@ -4,17 +4,44 @@ namespace Flynt\Components\ModulTextImage;
 
 add_filter('Flynt/addComponentData?name=ModulTextImage', function ($data) {
   if (!empty($data['ctaButtons'])) {
-    $data['buttons'] = [];
-    foreach ($data['ctaButtons'] as $ctaButton) {
-      if (!empty($ctaButton['button'])) {
-        $data['buttons'][] = [
-          'text' => $ctaButton['button']['title'],
-          'link' => $ctaButton['button']['url'],
-          'target' => $ctaButton['button']['target'],
-        ];
-      }
-    }
+    $data['buttons'] = array_map(function ($cta) {
+      return [
+        'text' => $cta['button']['title'] ?? '',
+        'link' => $cta['button']['url'] ?? '',
+        'target' => $cta['button']['target'] ?? '',
+      ];
+    }, array_filter($data['ctaButtons'], fn($cta) => !empty($cta['button'])));
   }
+
+  $pos = $data['options']['imagePosition'] ?? 'left';
+  $isVertical = in_array($pos, ['top', 'bottom']);
+
+  $data['gridClass'] = $isVertical
+    ? 'justify-items-center'
+    : 'md:grid-cols-2 items-center';
+
+  $data['imageClass'] = '';
+  $data['contentClass'] = '';
+
+  if ($pos === 'right') {
+    $data['imageClass'] = 'md:order-2';
+  } elseif ($pos === 'bottom') {
+    $data['imageClass'] = 'order-2';
+    $data['contentClass'] = 'order-1';
+  }
+
+  if ($isVertical) {
+    $data['contentClass'] .= ' text-center items-center';
+    $data['textAlign'] = 'text-center';
+    $data['containerClass'] = 'max-w-4xl mx-auto';
+  } else {
+    $data['textAlign'] = 'text-start';
+    $data['containerClass'] = 'w-full';
+  }
+
+  $ratio = $data['options']['aspectRatio'] ?? '16:9';
+  $data['aspectRatioClass'] = ($ratio === '4:3') ? 'aspect-[4/3]' : 'aspect-video';
+
   return $data;
 });
 

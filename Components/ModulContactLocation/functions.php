@@ -2,21 +2,29 @@
 
 namespace Flynt\Components\ModulContactLocation;
 
-// Hook für Component Data
 add_filter('Flynt/addComponentData?name=ModulContactLocation', function ($data) {
-  // Format buttons for the template
   if (!empty($data['ctaButtons'])) {
-    $data['buttons'] = [];
-    foreach ($data['ctaButtons'] as $ctaButton) {
-      if (!empty($ctaButton['button'])) {
-        $data['buttons'][] = [
-          'text' => $ctaButton['button']['title'],
-          'link' => $ctaButton['button']['url'],
-          'target' => $ctaButton['button']['target'],
-        ];
-      }
-    }
+    $data['buttons'] = array_map(function ($cta) {
+      return [
+        'text' => $cta['button']['title'] ?? '',
+        'link' => $cta['button']['url'] ?? '',
+        'target' => $cta['button']['target'] ?? '',
+      ];
+    }, array_filter($data['ctaButtons'], fn($cta) => !empty($cta['button'])));
   }
+
+  $gridMap = [
+    '2' => 'grid-cols-1 md:grid-cols-2',
+    '3' => 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3',
+    '4' => 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',
+  ];
+
+  $layoutType = $data['layout'] ?? 'Kontakt';
+  $columnChoice = ($layoutType === 'Kontakt')
+    ? ($data['contactLayout'] ?? '2')
+    : ($data['locationsLayout'] ?? '2');
+
+  $data['gridClass'] = $gridMap[$columnChoice] ?? $gridMap['2'];
 
   return $data;
 });
@@ -25,7 +33,7 @@ function getACFLayout()
 {
   return [
     'name' => 'modulContactLocation',
-    'label' => 'Modul: Kontakt & Standorte',
+    'label' => __('Modul: Kontakt & Standorte', 'flynt'),
     'sub_fields' => [
       [
         'label' => __('Inhalt', 'flynt'),
