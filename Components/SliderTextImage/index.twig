@@ -61,17 +61,11 @@
 					{% endfor %}
 				</div>
 
-				<button type="button" data-ref="prev" class="group hidden lg:block absolute z-10 -bottom-1 left-4 w-8 h-8 rounded-full items-center justify-center transition-colors duration-300 bg-transparent hover:bg-primary cursor-pointer slider-button slider-button--prev" aria-label="{{ sliderOptions.a11y.prevSlideMessage|e }}">
-					<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" class="w-full h-full">
-						<path d="M16 31C7.71573 31 1 24.2843 1 16C1 7.71573 7.71573 1 16 1C24.2843 1 31 7.71573 31 16C31 24.2843 24.2843 31 16 31Z" class="stroke-primary group-hover:fill-primary transition-colors duration-300 fill-transparent"/>
-						<path d="M16 10L10 16M10 16L16 22M10 16L22 16" class="stroke-primary group-hover:stroke-white transition-colors duration-300"/>
-					</svg>
+				<button type="button" data-ref="prev" class="group hidden lg:block absolute z-10 -bottom-1 border border-primary left-4 w-8 h-8 rounded-full items-center justify-center transition-colors duration-300 bg-transparent hover:bg-primary cursor-pointer slider-button slider-button--prev" aria-label="{{ sliderOptions.a11y.prevSlideMessage|e }}">
+					<iconify-icon icon="lucide:arrow-left" class="w-full h-full text-primary group-hover:text-white place-content-center transition-colors duration-300"></iconify-icon>
 				</button>
-				<button type="button" data-ref="next" class="group hidden lg:block absolute rotate-180 z-10 -bottom-1 right-4 w-8 h-8 rounded-full items-center justify-center transition-colors duration-300 bg-transparent hover:bg-primary cursor-pointer slider-button slider-button--next" aria-label="{{ sliderOptions.a11y.nextSlideMessage|e }}">
-					<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" class="w-full h-full">
-						<path d="M16 31C7.71573 31 1 24.2843 1 16C1 7.71573 7.71573 1 16 1C24.2843 1 31 7.71573 31 16C31 24.2843 24.2843 31 16 31Z" class="stroke-primary group-hover:fill-primary transition-colors duration-300 fill-transparent"/>
-						<path d="M16 10L10 16M10 16L16 22M10 16L22 16" class="stroke-primary group-hover:stroke-white transition-colors duration-300"/>
-					</svg>
+				<button type="button" data-ref="next" class="group hidden lg:block absolute border border-primary items-center justify-center z-10 -bottom-1 right-4 w-8 h-8 rounded-full transition-colors duration-300 bg-transparent hover:bg-primary cursor-pointer slider-button slider-button--next" aria-label="{{ sliderOptions.a11y.nextSlideMessage|e }}">
+					<iconify-icon icon="lucide:arrow-right" class="w-full h-full text-primary group-hover:text-white place-content-center transition-colors duration-300"></iconify-icon>
 				</button>
 				<div data-ref="pagination" class="slider-pagination text-center mt-6 space-x-2"></div>
 			</div>
