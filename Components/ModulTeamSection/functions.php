@@ -2,8 +2,86 @@
 
 namespace Flynt\Components\ModulTeamSection;
 
-
 add_filter('Flynt/addComponentData?name=ModulTeamSection', function ($data) {
+  $groupedMembers = [];
+
+  // 1. Get all ungrouped team members (no taxonomy assigned)
+  $ungroupedArgs = [
+    'post_type' => 'team_member',
+    'posts_per_page' => -1,
+    'post_status' => 'publish',
+    'tax_query' => [
+      [
+        'taxonomy' => 'team_group',
+        'operator' => 'NOT EXISTS',
+      ]
+    ],
+    'meta_query' => [
+      [
+        'key' => 'team_member_is_shown',
+        'value' => '1',
+        'compare' => '=='
+      ]
+    ]
+  ];
+
+  $ungroupedMembers = get_posts($ungroupedArgs);
+
+  if (!empty($ungroupedMembers)) {
+    foreach ($ungroupedMembers as $member) {
+      $member->fields = get_fields($member->ID);
+    }
+    $groupedMembers[] = [
+      'title' => '', // No title for ungrouped
+      'members' => $ungroupedMembers,
+      'is_ungrouped' => true
+    ];
+  }
+
+  // 2. Get grouped team members by taxonomy terms
+  $terms = get_terms([
+    'taxonomy' => 'team_group',
+    'hide_empty' => true,
+  ]);
+
+  if (!empty($terms) && !is_wp_error($terms)) {
+    foreach ($terms as $term) {
+      $args = [
+        'post_type' => 'team_member',
+        'posts_per_page' => -1,
+        'post_status' => 'publish',
+        'tax_query' => [
+          [
+            'taxonomy' => 'team_group',
+            'field' => 'term_id',
+            'terms' => $term->term_id,
+          ]
+        ],
+        'meta_query' => [
+          [
+            'key' => 'team_member_is_shown',
+            'value' => '1',
+            'compare' => '=='
+          ]
+        ]
+      ];
+
+      $members = get_posts($args);
+
+      if (!empty($members)) {
+        foreach ($members as $member) {
+          $member->fields = get_fields($member->ID);
+        }
+        $groupedMembers[] = [
+          'title' => $term->name,
+          'members' => $members,
+          'is_ungrouped' => false
+        ];
+      }
+    }
+  }
+
+  $data['groupedMembers'] = $groupedMembers;
   return $data;
 });
 
@@ -11,7 +89,7 @@ function getACFLayout()
 {
   return [
     'name' => 'modulTeamSection',
-    'label' => 'Modul: Team Sektion',
+    'label' => 'Modul: Team Bereich',
     'sub_fields' => [
       [
         'label' => __('Inhalt', 'flynt'),
@@ -38,66 +116,6 @@ function getACFLayout()
         'type' => 'textarea',
         'maxlength' => 750,
         'instructions' => __('Beschreibung oder Einleitungstext zum Inhalt (max. 750 Zeichen).', 'flynt'),
-      ],
-      [
-        'label' => __('Team-Mitglieder', 'flynt'),
-        'name' => 'teamMembers',
-        'type' => 'repeater',
-        'instructions' => __('Füge Team-Mitglieder hinzu (mind. 1).', 'flynt'),
-        'min' => 1,
-        'layout' => 'block',
-        'button_label' => __('Neues Team-Mitglied', 'flynt'),
-        'sub_fields' => [
-          [
-            'label' => __('Profilbild', 'flynt'),
-            'name' => 'image',
-            'type' => 'image',
-            'instructions' => __('Optional (erlaubt: .jpg, .jpeg, .png, .svg, .webp)', 'flynt'),
-            'return_format' => 'array',
-            'preview_size' => 'thumbnail',
-            'library' => 'all',
-            'mime_type' => 'jpeg, jpg, png, svg, webp',
-            'wrapper' => [
-              'width' => '33.33%'
-            ],
-          ],
-          [
-            'label' => __('Name', 'flynt'),
-            'name' => 'name',
-            'type' => 'text',
-            'instructions' => __('Optional', 'flynt'),
-            'wrapper' => [
-              'width' => '33.33%'
-            ],
-          ],
-          [
-            'label' => __('Position', 'flynt'),
-            'name' => 'position',
-            'type' => 'text',
-            'instructions' => __('Optional', 'flynt'),
-            'wrapper' => [
-              'width' => '33.33%'
-            ],
-          ],
-          [
-            'label' => __('Social Media URL Nr. 1', 'flynt'),
-            'name' => 'twitterUrl',
-            'type' => 'url',
-            'instructions' => __('Optional: z.B. Twitter/X Profil-URL', 'flynt'),
-            'wrapper' => [
-              'width' => '50%'
-            ],
-          ],
-          [
-            'label' => __('Social Media URL Nr. 2', 'flynt'),
-            'name' => 'linkedinUrl',
-            'type' => 'url',
-            'instructions' => __('Optional: z.B. LinkedIn Profil-URL', 'flynt'),
-            'wrapper' => [
-              'width' => '50%'
-            ],
-          ],
-        ],
       ],
     ],
   ];
