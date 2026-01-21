@@ -14,7 +14,7 @@
 					<ul class="pb-4 pl-4 space-y-4">
 						{% for child in item.children %}
 							<li>
-								<a href="{{ child.link|e('esc_url') }}" class="block text-base {{ child.current ? 'text-primary font-bold' : 'text-gray-600' }}">
+								<a href="{{ child.link|e('esc_url') }}" class="block text-base {{ child.current ? 'text-primary font-bold' : 'text-gray-600' }}" {{ child.is_external or child.is_target_blank ? ' target="_blank" rel="noopener noreferrer"' }}>
 									{{ child.title }}
 								</a>
 							</li>
@@ -22,7 +22,7 @@
 					</ul>
 				</details>
 			{% else %}
-				<a href="{{ item.link|e('esc_url') }}" class="block py-4 text-lg font-semibold {{ is_active ? 'text-primary' : 'text-gray-800' }}">
+				<a href="{{ item.link|e('esc_url') }}" class="block py-4 text-lg font-semibold {{ is_active ? 'text-primary' : 'text-gray-800' }}" {{ item.is_external or item.is_target_blank ? ' target="_blank" rel="noopener noreferrer"' }}>
 					{{ item.title }}
 				</a>
 			{% endif %}

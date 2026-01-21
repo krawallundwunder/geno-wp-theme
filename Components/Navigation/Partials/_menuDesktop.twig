@@ -1,26 +1,27 @@
-<ul class="flex items-center list-none space-x-8">
+<ul class="flex items-center list-none space-x-10">
 	{% for item in items %}
 		{% set is_active = item.current or item.current_item_ancestor or item.current_item_parent %}
 		{% set has_children = item.children is defined and item.children|length > 0 %}
 
-		<li
-			class="relative group py-6">
-			{# py-6 creates the hover bridge #}
+		<li class="relative group py-7">
 
 			{% if has_children %}
-				<div class="flex items-center cursor-pointer font-medium transition-colors duration-200 {{ is_active ? 'text-primary' : 'text-gray-700 hover:text-primary' }}">
+				{# ACCESSIBLE TRIGGER #}
+				<button type="button" aria-haspopup="true" aria-expanded="false" class="relative flex items-center font-semibold text-[15px] tracking-tight transition-all duration-300 {{ is_active ? 'text-primary' : 'text-slate-700 hover:text-primary' }}">
 					<span>{{ item.title }}</span>
-					<svg class="w-4 h-4 ms-1 transition-transform duration-200 group-hover:rotate-180" fill="none" viewbox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+					<svg class="w-3.5 h-3.5 ms-1.5 opacity-50 group-hover:rotate-180 transition-transform duration-300" fill="none" viewbox="0 0 24 24" stroke="currentColor" stroke-width="3">
+						<path d="m19 9-7 7-7-7"/>
 					</svg>
-				</div>
+					{# Animated Underline #}
+					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full {{ is_active ? 'w-full' : '' }}"></span>
+				</button>
 
-				{# DROPDOWN #}
-				<div class="absolute left-0 top-full z-50 hidden group-hover:block min-w-[200px] pt-0">
-					<ul class="bg-white border border-gray-100 shadow-xl rounded-b-lg py-2 overflow-hidden">
+				{# ACCESSIBLE DROPDOWN (Hover & Focus-Within) #}
+				<div class="absolute left-0 top-full z-50 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-300 ease-out min-w-[240px] pt-2">
+					<ul class="bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-50 p-2">
 						{% for child in item.children %}
 							<li>
-								<a href="{{ child.link|e('esc_url') }}" class="block px-4 py-2.5 text-sm font-medium {{ child.current ? 'text-primary bg-gray-50' : 'text-gray-600 hover:text-primary hover:bg-gray-50' }}">
+								<a href="{{ child.link|e('esc_url') }}" class="flex items-center px-4 py-3 rounded-xl text-[14px] font-medium transition-all duration-200 {{ child.current ? 'bg-primary/5 text-primary' : 'text-slate-600 hover:bg-slate-50 hover:text-primary' }}" {{ child.is_external or child.is_target_blank ? ' target="_blank" rel="noopener noreferrer"' }}>
 									{{ child.title }}
 								</a>
 							</li>
@@ -29,8 +30,10 @@
 				</div>
 
 			{% else %}
-				<a href="{{ item.link|e('esc_url') }}" class="block font-medium transition-colors duration-200 {{ is_active ? 'text-primary' : 'text-gray-700 hover:text-primary' }}">
-					{{ item.title }}
+				{# STANDARD LINK #}
+				<a href="{{ item.link|e('esc_url') }}" class="relative block font-semibold text-[15px] tracking-tight transition-all duration-300 {{ is_active ? 'text-primary' : 'text-slate-700 hover:text-primary' }}" {{ item.is_external or item.is_target_blank ? ' target="_blank" rel="noopener noreferrer nofollow"' }}>
+					<span>{{ item.title }}</span>
+					<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full {{ is_active ? 'w-full' : '' }}"></span>
 				</a>
 			{% endif %}
 
