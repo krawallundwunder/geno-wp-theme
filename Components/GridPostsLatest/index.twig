@@ -48,13 +48,11 @@
 								</span>
 
 								{# Card Action using your Global Button #}
-								<div class="mt-auto pt-5 border-t border-primary ">
-									{% include "templates/_partials/button.twig" with {
+								{% include "templates/_partials/button.twig" with {
                     link: post.link,
                     text: labels.readMore,
                     variant: 'outlined',
                   } only %}
-								</div>
 							</div>
 						</div>
 					</li>
