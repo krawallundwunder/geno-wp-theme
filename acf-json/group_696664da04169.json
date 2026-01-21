@@ -1,10 +1,10 @@
 {
     "key": "group_696664da04169",
-    "title": "Team Member Fields",
+    "title": "Teammitglied Felder",
     "fields": [
         {
             "key": "field_696664da18f1c",
-            "label": "Team Member Image",
+            "label": "Teammitglied Bild",
             "name": "team_member_image",
             "aria-label": "",
             "type": "image",
@@ -30,11 +30,11 @@
         },
         {
             "key": "field_6966655718f1e",
-            "label": "Team Member Position",
+            "label": "Teammitglied Position",
             "name": "team_member_position",
             "aria-label": "",
             "type": "text",
-            "instructions": "Rolle \/ Position im Unternehmen",
+            "instructions": "Rolle / Position im Unternehmen",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -51,11 +51,11 @@
         },
         {
             "key": "field_6966657418f1f",
-            "label": "Team Member Links",
+            "label": "Teammitglied Links",
             "name": "team_member_links",
             "aria-label": "",
             "type": "repeater",
-            "instructions": "Für Social Media \/ Website \/ Profilseiten",
+            "instructions": "Für Social Media / Website / Profilseiten",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -68,16 +68,16 @@
             "min": 0,
             "max": 0,
             "collapsed": "",
-            "button_label": "Add Row",
+            "button_label": "Zeile hinzufügen",
             "rows_per_page": 20,
             "sub_fields": [
                 {
                     "key": "field_696669a44e4df",
-                    "label": "Link Image",
+                    "label": "Link Bild",
                     "name": "link_image",
                     "aria-label": "",
                     "type": "image",
-                    "instructions": "add the image of the social media",
+                    "instructions": "Fügen Sie das Bild des Social Media hinzu",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -100,7 +100,7 @@
                 },
                 {
                     "key": "field_696665b618f21",
-                    "label": "Link Url",
+                    "label": "Link URL",
                     "name": "link_url",
                     "aria-label": "",
                     "type": "url",
@@ -121,11 +121,11 @@
         },
         {
             "key": "field_696665d018f22",
-            "label": "Team Member Is Shown",
+            "label": "Teammitglied wird angezeigt",
             "name": "team_member_is_shown",
             "aria-label": "",
             "type": "true_false",
-            "instructions": "Show Team Members on Page",
+            "instructions": "Teammitglied auf der Seite anzeigen",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -136,8 +136,8 @@
             "message": "",
             "default_value": 0,
             "allow_in_bindings": 0,
-            "ui_on_text": "is Shown",
-            "ui_off_text": "Not Shown",
+            "ui_on_text": "Wird angezeigt",
+            "ui_off_text": "Nicht angezeigt",
             "ui": 1
         }
     ],
