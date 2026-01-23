@@ -38,14 +38,11 @@
 							<div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full {% if hasLink %}hover:shadow-xl transition-all duration-300 hover:-translate-y-1{% endif %}">
 								<div class="overflow-hidden bg-gray-200 {{ aspectRatioClass }} shrink-0 relative">
 									{% if hasLink %}
-										<div class="mt-4 shrink-0">
-											{% include "templates/_partials/button.twig" with {
-                          text: card.cardButton.title,
-                          link: card.cardButton.url,
-                          target: card.cardButton.target,
-                          variant: 'outlined',
-                        } only %}
-										</div>
+										<a href="{{ card.cardButton.url }}" {% if card.cardButton.target %} target="{{ card.cardButton.target }}" {% endif %} class="block h-full w-full group">
+											<img src="{{ Image(card.image).src('large') }}" srcset="{{ Image(card.image).srcset('large') }}" alt="{{ card.title ?? '' }}" class="h-full w-full object-cover group-hover:scale-[1.01] transition-transform duration-500" loading="lazy" decoding="async"/>
+										</a>
+									{% else %}
+										<img src="{{ Image(card.image).src('large') }}" srcset="{{ Image(card.image).srcset('large') }}" alt="{{ card.title ?? '' }}" class="h-full w-full object-cover" loading="lazy" decoding="async"/>
 									{% endif %}
 								</div>
 
@@ -67,8 +64,8 @@
                         text: card.cardButton.title,
                         link: card.cardButton.url,
                         target: card.cardButton.target,
-                        variant: 'secondary',
-                      } %}
+                        variant: 'outlined',
+                      } only %}
 										</div>
 									{% endif %}
 								</div>
