@@ -21,7 +21,7 @@
 				<div class="mt-16 flex justify-center gap-x-10">
 					{% for social in footer_social_media %}
 						{% if social.link and social.icon %}
-							<a href="{{ social.link }}" class="text-gray-600 hover:text-gray-800 transition-colors" target="_blank" rel="noopener noreferrer" aria-label="{{ social.icon.alt ?: 'Social Media Link' }}">
+							<a href="{{ social.link }}" class="hover:opacity-70 transition-colors" target="_blank" rel="noopener noreferrer" aria-label="{{ social.icon.alt ?: 'Social Media Link' }}">
 								<span class="sr-only">{{ social.icon.alt ?: 'Social Media' }}</span>
 								<img src="{{ social.icon.src }}" alt="" aria-hidden="true" class="size-6">
 							</a>
