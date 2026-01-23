@@ -60,20 +60,9 @@ Options::addGlobal('Seiten Einstellungen', [
         'type' => 'image',
         'instructions' => __('Lade ein Logo für den Footer hoch.(wenn kein logo gibt wird das Header Logo verwendet)', 'flynt'),
         'default_value' => '',
+        'preview_size' => 'thumbnail',
         'wrapper' => [
-          'width' => '50',
-        ],
-      ],
-
-      [
-        'label' => __('Footer Address', 'flynt'),
-        'name' => 'footer_address',
-        'type' => 'wysiwyg',
-        'instructions' => __('Gib die Adresse ein, die im Footer angezeigt werden soll.', 'flynt'),
-        'default_value' => '',
-        'media_upload' => 0,
-        'wrapper' => [
-          'width' => '50',
+          'width' => '33%',
         ],
       ],
       [
@@ -86,6 +75,7 @@ Options::addGlobal('Seiten Einstellungen', [
             'label' => __('Icon', 'flynt'),
             'name' => 'icon',
             'type' => 'image',
+            'preview_size' => 'thumbnail',
             'default_value' => '',
           ],
           [
@@ -94,6 +84,9 @@ Options::addGlobal('Seiten Einstellungen', [
             'type' => 'url',
             'default_value' => '',
           ],
+        ],
+        'wrapper' => [
+          'width' => '66%',
         ],
       ]
     ],
