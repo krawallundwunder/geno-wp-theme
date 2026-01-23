@@ -1,4 +1,4 @@
-<flynt-component name="modul-columns">
+<flynt-component name="ModulColumns">
 	<section class=" py-8 md:py-12 lg:py-16 transition-all duration-300 ease-in-out">
 		<div class="container mx-auto px-4 sm:px-6 lg:px-8">
 			{% if tag or title or description or buttons %}
@@ -7,6 +7,15 @@
 				</div>
 			{% endif %}
 
+			{% if tag or title or description or buttons %}
+				{% include "templates/_partials/headings.twig" with {
+        tag: tag,
+        title: title,
+        description: description,
+        buttons: buttons,
+        textAlign: textAlignmentClass
+      } %}
+			{% endif %}
 
 			<div class="grid grid-cols-1 gap-8 md:grid-flow-col md:auto-cols-fr md:grid-cols-{{ columns|length }}">
 				{% for column in columns %}
