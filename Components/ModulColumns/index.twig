@@ -52,14 +52,12 @@
 					</div>
 
 					{% if column.cardButton %}
-						<div class="mt-auto px-4 pb-4">
-							{% include "templates/_partials/button.twig" with {
-                text: column.cardButton.title,
-                link: column.cardButton.url,
-                target: column.cardButton.target,
-                variant: 'secondary',
-              } %}
-						</div>
+						{% include "templates/_partials/button.twig" with {
+            text: column.cardButton.title,
+            link: column.cardButton.url,
+            target: column.cardButton.target,
+            variant: 'outlined',
+          } only %}
 					{% endif %}
 				</div>
 			{% endfor %}
