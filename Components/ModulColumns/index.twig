@@ -54,19 +54,18 @@
 								{% endif %}
 							</div>
 						</div>
-
-						{% if column.cardButton %}
-							{% include "templates/_partials/button.twig" with {
-              text: column.cardButton.title,
-              link: column.cardButton.url,
-              target: column.cardButton.target,
-              variant: 'secondary',
-            } %}
-						{% endif %}
-
 					</div>
-				{% endfor %}
-			</div>
+
+					{% if column.cardButton %}
+						{% include "templates/_partials/button.twig" with {
+            text: column.cardButton.title,
+            link: column.cardButton.url,
+            target: column.cardButton.target,
+            variant: 'outlined',
+          } only %}
+					{% endif %}
+				</div>
+			{% endfor %}
 		</div>
 	</section>
 	<style>
