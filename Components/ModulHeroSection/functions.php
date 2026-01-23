@@ -1,8 +1,8 @@
 <?php
 
-namespace Flynt\Components\BlockHeroSection;
+namespace Flynt\Components\ModulHeroSection;
 
-add_filter('Flynt/addComponentData?name=BlockHeroSection', function ($data) {
+add_filter('Flynt/addComponentData?name=ModulHeroSection', function ($data) {
   if (!empty($data['ctaButtons'])) {
     $data['buttons'] = [];
     foreach ($data['ctaButtons'] as $ctaButton) {
@@ -21,8 +21,8 @@ add_filter('Flynt/addComponentData?name=BlockHeroSection', function ($data) {
 function getACFLayout()
 {
   return [
-    'name' => 'BlockHeroSection',
-    'label' => __('Block: Hero Section', 'flynt'),
+    'name' => 'ModulHeroSection',
+    'label' => __('Modul: Hero Sektion', 'flynt'),
     'sub_fields' => [
       [
         'label' => __('Inhalt', 'flynt'),
@@ -31,36 +31,48 @@ function getACFLayout()
         'placement' => 'top',
       ],
       [
-        'label' => __('Überschrift', 'flynt'),
-        'name' => 'headline',
-        'type' => 'wysiwyg',
-        'instructions' => __('Geben Sie die Überschrift für den Header ein.', 'flynt'),
-        'tabs' => 'visual',
-        'toolbar' => 'basic',
-        'media_upload' => 0,
-        'delay' => 1,
-        'required' => 0,
+        'label' => __('Tagline', 'flynt'),
+        'name' => 'tag',
+        'type' => 'text',
+        'maxlength' => 20,
+        'instructions' => __('Kurzer Tag über dem Titel (z. B. „Willkommen" (max. 20 Zeichen)).', 'flynt'),
       ],
       [
-        'label' => __('CTA Buttons', 'flynt'),
+        'label' => __('Überschrift', 'flynt'),
+        'name' => 'headline',
+        'type' => 'text',
+        'maxlength' => 50,
+        'instructions' => __('Titel des Inhalts. Kurz, klar und aussagekräftig (max. 50 Zeichen).', 'flynt'),
+        'tabs' => 'visual',
+      ],
+      [
+        'label' => __('Unterzeile', 'flynt'),
+        'name' => 'description',
+        'type' => 'text',
+        'maxlength' => 250,
+        'instructions' => __('Kurzer Einleitungstext (max. 250 Zeichen).', 'flynt'),
+        'tabs' => 'visual',
+      ],
+      [
+        'label' => __('Buttons', 'flynt'),
         'name' => 'ctaButtons',
         'type' => 'repeater',
-        'instructions' => __('Call to Action Buttons unter dem Textinhalt.', 'flynt'),
+        'instructions' => __('Fügen Sie hier übergeordnete Buttons hinzu.', 'flynt'),
         'layout' => 'row',
-        'button_label' => __('Button Hinzufügen', 'flynt'),
+        'button_label' => __('Übergeordneten Button hinzufügen', 'flynt'),
+        'max' => 2,
         'sub_fields' => [
           [
             'label' => __('Button', 'flynt'),
             'name' => 'button',
             'type' => 'link',
-            'instructions' => __('Button-Konfiguration.', 'flynt'),
             'return_format' => 'array',
           ],
         ],
       ],
       [
         'label' => __('Einstellungen', 'flynt'),
-        'name' => 'settingsTab',
+        'name' => 'optionsTab',
         'type' => 'tab',
         'placement' => 'top',
       ],
@@ -68,6 +80,7 @@ function getACFLayout()
         'label' => __('Hintergrundfarbe', 'flynt'),
         'name' => 'backgroundColor',
         'type' => 'select',
+        'instructions' => __('Wählen Sie zwischen 2 Textfarben.', 'flynt'),
         'choices' => [
           'white' => __('Weiß', 'flynt'),
           'black' => __('Schwarz', 'flynt'),
@@ -81,6 +94,7 @@ function getACFLayout()
         'label' => __('Text Position', 'flynt'),
         'name' => 'textPosition',
         'type' => 'button_group',
+        'instructions' => __('Position des Textes im Layout.', 'flynt'),
         'choices' => [
           'full' => __('Voll', 'flynt'),
           'left' => __('Links', 'flynt'),
@@ -94,9 +108,10 @@ function getACFLayout()
         'label' => __('Hintergrundbild', 'flynt'),
         'name' => 'backgroundImage',
         'type' => 'image',
-        'instructions' => __('Hintergrund für die gesamte Sektion.', 'flynt'),
+        'instructions' => __('Optionales Hintergrundbild für die gesamte Sektion (erlaubt: .jpg, .jpeg, .png, .svg, .webp)', 'flynt'),
         'return_format' => 'array',
         'preview_size' => 'thumbnail',
+        'mime_types' => 'jpg, jpeg, png, svg, webp',
         'library' => 'all',
         'wrapper' => [
           'width' => '33%',

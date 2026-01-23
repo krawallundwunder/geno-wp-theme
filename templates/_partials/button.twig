@@ -2,15 +2,17 @@
 {% set buttonType = type|default('button') %}
 {% set targetStr = target == '_blank' ? 'target="_blank" rel="noopener noreferrer"' : '' %}
 
-{% set baseClasses = 'group inline-flex items-center justify-center gap-2 font-semibold no-underline rounded-lg transition-all duration-300 ease-in-out cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-60 disabled:pointer-events-none' %}
+{% set baseClasses = 'group inline-flex items-center justify-center gap-2 font-semibold no-underline! hover:underline! group-hover:underline! rounded-lg transition-all duration-300 ease-in-out cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-60 disabled:pointer-events-none' %}
 
 {% set sizeClasses = {
   'medium': 'px-6 py-3 text-base',
 } %}
 
 {% set variantClasses = {
-  'primary': 'bg-primary text-white border-2 border-transparent hover:brightness-110 hover:-translate-y-0.5 focus-visible:ring-primary no_underline! hover:underline!',
-  'secondary': 'bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white hover:-translate-y-0.5 focus-visible:ring-primary no_underline! hover:underline!',
+  'primary': 'bg-primary text-white border-2 border-transparent hover:brightness-110 hover:-translate-y-0.5 focus-visible:ring-primary',
+  'outlined': 'bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white hover:-translate-y-0.5 focus-visible:ring-primary',
+  'text': 'bg-transparent text-primary focus-visible:ring-primary',
+  'textBack': 'bg-transparent text-primary focus-visible:ring-primary',
 } %}
 
 {% set selectedSize = sizeClasses[size|default('medium')] %}
@@ -19,14 +21,18 @@
 
 <{{tag}} {% if tag == 'a' %} href="{{ link|default('#') }}" {{ targetStr }} {% if disabled %} role="link" aria-disabled="true" tabindex="-1" {% endif %} {% else %} type="{{ buttonType }}" {% if disabled %} disabled {% endif %} {% endif %} class="{{ baseClasses }} {{ selectedSize }} {{ selectedVariant }} {{ customClasses }}" {% if ariaLabel %} aria-label="{{ ariaLabel }}" {% endif %} {{ extraAttributes|default('') }}>
 
-	{% if iconLeft %}
-		<span class="transition-transform group-hover:-translate-x-1">{{ iconLeft }}</span>
+	{% if variant == 'textBack' %}
+		<span class="transition-transform group-hover:-translate-x-1 scale-[-1]">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1" d="M5 12h14m-7-7l7 7l-7 7"/></svg>
+		</span>
 	{% endif %}
 
 	<span>{{ text|default('Button') }}</span>
 
-	{% if iconRight %}
-		<span class="transition-transform group-hover:translate-x-1">{{ iconRight }}</span>
+	{% if variant == 'text' %}
+		<span class="transition-transform group-hover:translate-x-1">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1" d="M5 12h14m-7-7l7 7l-7 7"/></svg>
+		</span>
 	{% endif %}
 
 </{{tag}}>
