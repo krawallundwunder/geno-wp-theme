@@ -3,12 +3,7 @@
 	<section class="cards-repeater py-16 bg-gray-50">
 		<div class="container mx-auto">
 			{% if tag or title or description or buttons %}
-				{% include "templates/_partials/headings.twig" with {
-          tag: tag,
-          title: title,
-          description: description,
-          buttons: buttons
-        } %}
+				{% include "templates/_partials/headings.twig" with { tag, title, description, buttons, textAlign } %}
 			{% endif %}
 
 			{# Tailwind Scan Support: lg:grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 #}
