@@ -22,13 +22,13 @@
 									<div class="space-y-3 grow">
 										{% if area.email %}
 											<a href="mailto:{{ area.email }}" class="block font-medium transition-colors">
-												<iconify-icon icon="lucide:mail" class="w-5 h-5 mr-2 inline-block text-current"></iconify-icon>
+												<iconify-icon icon="lucide:mail" class="w-5 h-5 mr-2 inline-block text-current place-content-center" aria-hidden="true"></iconify-icon>
 												{{ area.email }}
 											</a>
 										{% endif %}
 										{% if area.phone %}
 											<a href="tel:{{ area.phone|replace({' ': '', '(': '', ')': '', '-': ''}) }}" class="block text-gray-600 hover:text-gray-800 transition-colors">
-												<iconify-icon icon="lucide:phone" class="w-5 h-5 mr-2 inline-block text-current"></iconify-icon>
+												<iconify-icon icon="lucide:phone" class="w-5 h-5 mr-2 inline-block text-current place-content-center" aria-hidden="true"></iconify-icon>
 												{{ area.phone }}
 											</a>
 										{% endif %}
@@ -38,7 +38,7 @@
 										<div class="mt-6">
 											<a href="{{ area.formLink.url }}" class="inline-flex items-center font-semibold transition-colors group" {% if area.formLink.target %} target="{{ area.formLink.target }}" {% endif %}>
 												{{ area.formLink.title|default('Kontaktformular') }}
-												<iconify-icon icon="lucide:arrow-right" class="w-5 h-5 ml-2 tranition-transform"></iconify-icon>
+												<iconify-icon icon="lucide:arrow-right" class="w-5 h-5 ml-2 transition-transform place-content-center" aria-hidden="true"></iconify-icon>
 											</a>
 										</div>
 									{% endif %}
@@ -74,13 +74,13 @@
 								<div class="space-y-2 mb-6 pt-4 border-t border-gray-200">
 									{% if location.phone %}
 										<a href="tel:{{ location.phone|replace({' ': '', '(': '', ')': '', '-': ''}) }}" class="flex items-center font-bold text-gray-600 hover:text-gray-800 transition-colors">
-											<iconify-icon icon="lucide:phone" class="w-5 h-5 mr-1 text-current"></iconify-icon>
+											<iconify-icon icon="lucide:phone" class="w-5 h-5 mr-1 text-current place-content-center" aria-hidden="true"></iconify-icon>
 											{{ location.phone }}
 										</a>
 									{% endif %}
 									{% if location.email %}
 										<a href="mailto:{{ location.email }}" class="flex items-center font-bold text-gray-600 hover:text-gray-800 transition-colors">
-											<iconify-icon icon="lucide:mail" class="w-5 h-5 mr-1 text-current"></iconify-icon>
+											<iconify-icon icon="lucide:mail" class="w-5 h-5 mr-1 text-current place-content-center" aria-hidden="true"></iconify-icon>
 											{{ location.email }}
 										</a>
 									{% endif %}
@@ -89,7 +89,7 @@
 
 							{% if location.mapLink %}
 								<a href="{{ location.mapLink }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold transition-colors group">
-									<iconify-icon icon="lucide:map-pin" class="w-5 h-5 mr-1 text-current"></iconify-icon>
+									<iconify-icon icon="lucide:map-pin" class="w-5 h-5 mr-1 text-current place-content-center" aria-hidden="true"></iconify-icon>
 									Auf Karte anzeigen
 								</a>
 							{% endif %}
