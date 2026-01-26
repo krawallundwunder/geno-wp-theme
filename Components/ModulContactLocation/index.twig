@@ -7,22 +7,13 @@
 			{% include "templates/_partials/headings.twig" with { tag, title, description, buttons, textAlign: 'text-center' } %}
 		</div>
 
-		{# Kontakt Section - Nur wenn Layout 'Kontakt' gewählt und Daten vorhanden #}
+		{# Kontakt Section #}
 		{% if layout == 'Kontakt' and contactAreas|length > 0 %}
 			<div class="mb-20">
-				{% set contactGridClasses = 'grid gap-8 lg:gap-12 ' %}
-				{% if contactLayout == '4' %}
-					{% set contactGridClasses = contactGridClasses ~ 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' %}
-				{% elseif contactLayout == '3' %}
-					{% set contactGridClasses = contactGridClasses ~ 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3' %}
-				{% else %}
-					{% set contactGridClasses = contactGridClasses ~ 'grid-cols-1 md:grid-cols-2' %}
-				{% endif %}
-
-				<div class="{{ contactGridClasses }}">
+				<div class="grid gap-8 lg:gap-12 {{ gridClass }}">
 					{% for area in contactAreas %}
 						{% if area.title or area.email or area.phone or area.formLink %}
-							<div class="bg-gray-50 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
+							<div class="bg-primary/10 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300">
 								<div class="flex flex-col h-full">
 									{% if area.title %}
 										<h3 class="text-2xl font-medium text-gray-900 mb-4">{{ area.title }}</h3>
@@ -59,66 +50,52 @@
 			</div>
 		{% endif %}
 
-		{# Standorte Section - Nur wenn Layout 'Standorte' gewählt und Daten vorhanden #}
+		{# Standorte Section #}
 		{% if layout == 'Standorte' and locations|length > 0 %}
-			<div>
-				{% set locationsGridClasses = 'grid gap-8 lg:gap-12 ' %}
-				{% if locationsLayout == '4' %}
-					{% set locationsGridClasses = locationsGridClasses ~ 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' %}
-				{% elseif locationsLayout == '3' %}
-					{% set locationsGridClasses = locationsGridClasses ~ 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3' %}
-				{% else %}
-					{% set locationsGridClasses = locationsGridClasses ~ 'grid-cols-1 md:grid-cols-2' %}
-				{% endif %}
+			<div class="grid gap-8 lg:gap-12 {{ gridClass }}">
+				{% for location in locations %}
+					{% if location.city or location.street %}
+						<div class="bg-white border border-primary/30 rounded-lg p-8 hover:border-primary hover:shadow-lg transition-all duration-300">
+							{% if location.city %}
+								<h3 class="text-2xl font-medium text-gray-900 mb-6">{{ location.city }}</h3>
+							{% endif %}
 
-				<div class="{{ locationsGridClasses }}">
-					{% for location in locations %}
-						{% if location.city or location.street %}
-							<div class="bg-white border border-primary/30 rounded-lg p-8 hover:border-primary hover:shadow-lg transition-all duration-300">
-								{% if location.city %}
-									<h3 class="text-2xl font-medium text-gray-900 mb-6">{{ location.city }}</h3>
+							<div class="space-y-2 text-gray-600 mb-6">
+								{% if location.street %}
+									<p class="text-base">{{ location.street }}</p>
 								{% endif %}
-
-								<div class="space-y-2 text-gray-600 mb-6">
-									{% if location.street %}
-										<p class="text-base">{{ location.street }}</p>
-									{% endif %}
-									<p class="text-base">
-										{{ location.zip }}
-										{{ location.cityName }}
-										{% if location.country %},
-											{{ location.country }}
-										{% endif %}
-									</p>
-								</div>
-
-								{% if location.phone or location.email %}
-									<div class="space-y-2 mb-6 pt-4 border-t border-gray-200">
-										{% if location.phone %}
-											<a href="tel:{{ location.phone|replace({' ': '', '(': '', ')': '', '-': ''}) }}" class="flex items-center font-bold text-gray-600 hover:text-gray-800 transition-colors">
-												<iconify-icon icon="lucide:phone" class="w-5 h-5 mr-1 text-current"></iconify-icon>
-												{{ location.phone }}
-											</a>
-										{% endif %}
-										{% if location.email %}
-											<a href="mailto:{{ location.email }}" class="flex items-center font-bold text-gray-600 hover:text-gray-800 transition-colors">
-												<iconify-icon icon="lucide:mail" class="w-5 h-5 mr-1 text-current"></iconify-icon>
-												{{ location.email }}
-											</a>
-										{% endif %}
-									</div>
-								{% endif %}
-
-								{% if location.mapLink %}
-									<a href="{{ location.mapLink }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold transition-colors group">
-										<iconify-icon icon="lucide:map-pin" class="w-5 h-5 mr-1 text-current"></iconify-icon>
-										Auf Karte anzeigen
-									</a>
-								{% endif %}
+								<p class="text-base">
+									{{ location.zip }}
+									{{ location.cityName }}{{ location.country ? ', ' ~ location.country : '' }}
+								</p>
 							</div>
-						{% endif %}
-					{% endfor %}
-				</div>
+
+							{% if location.phone or location.email %}
+								<div class="space-y-2 mb-6 pt-4 border-t border-gray-200">
+									{% if location.phone %}
+										<a href="tel:{{ location.phone|replace({' ': '', '(': '', ')': '', '-': ''}) }}" class="flex items-center font-bold text-gray-600 hover:text-gray-800 transition-colors">
+											<iconify-icon icon="lucide:phone" class="w-5 h-5 mr-1 text-current"></iconify-icon>
+											{{ location.phone }}
+										</a>
+									{% endif %}
+									{% if location.email %}
+										<a href="mailto:{{ location.email }}" class="flex items-center font-bold text-gray-600 hover:text-gray-800 transition-colors">
+											<iconify-icon icon="lucide:mail" class="w-5 h-5 mr-1 text-current"></iconify-icon>
+											{{ location.email }}
+										</a>
+									{% endif %}
+								</div>
+							{% endif %}
+
+							{% if location.mapLink %}
+								<a href="{{ location.mapLink }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold transition-colors group">
+									<iconify-icon icon="lucide:map-pin" class="w-5 h-5 mr-1 text-current"></iconify-icon>
+									Auf Karte anzeigen
+								</a>
+							{% endif %}
+						</div>
+					{% endif %}
+				{% endfor %}
 			</div>
 		{% endif %}
 

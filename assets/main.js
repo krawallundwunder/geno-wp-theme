@@ -4,8 +4,6 @@ import FlyntComponent from './scripts/FlyntComponent';
 
 import 'lazysizes';
 
-import { addCollection } from 'iconify-icon';
-
 if (import.meta.env.DEV) {
   import('@vite/client');
 }

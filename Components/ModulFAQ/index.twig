@@ -2,6 +2,7 @@
 	<section class="py-12 sm:py-20">
 		<div
 			class="container">
+
 			{# Header Section #}
 			<div class="mb-12 text-center">
 				{% include "templates/_partials/headings.twig" with { tag, title, description } %}
@@ -10,7 +11,7 @@
 			{% if faqItems %}
 				{% if layoutType == 'layout-2' %}
 					{# Layout 2: Accordion Style #}
-					<div class="flex flex-col border-t border-gray-200">
+					<div class="flex flex-col border-t border-gray-200 max-w-4xl mx-auto">
 						{% for item in faqItems %}
 							<details class="group border-b border-gray-200" id="faq-{{ loop.index0 }}">
 								<summary class="flex cursor-pointer items-start justify-between p-6 list-none transition-colors">
@@ -31,14 +32,13 @@
 
 				{% else %}
 					{# Layout 1: Grid Style #}
-					<div class="grid gap-8 {{ columns == '1' ? '' : 'md:grid-cols-2' }}">
+					<div class="grid gap-6 {{ gridClass }}">
 						{% for item in faqItems %}
 							<div class="bg-primary/10 border border-primary rounded-lg p-6 shadow-sm">
 								<div class="flex items-start mb-4 text-gray-900">
 									<iconify-icon icon="lucide:circle-question-mark" class="w-6 h-6 mr-2 transition-transform text-primary place-content-center"></iconify-icon>
 									<h3 class="text-lg font-semibold">{{ item.question }}</h3>
 								</div>
-								<div class="text-gray-600 leading-relaxed pl-9">{{ item.answer|raw }}</div>
 							</div>
 						{% endfor %}
 					</div>
@@ -48,9 +48,3 @@
 		</div>
 	</section>
 </flynt-component>
-
-<style>
-	summary::-webkit-details-marker {
-		display: none;
-	}
-</style>
