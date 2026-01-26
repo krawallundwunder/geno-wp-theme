@@ -20,10 +20,6 @@ flynt-component {
   position: relative;
 }
 
-a:where(:not(.wp-element-button)) {
-  text-decoration: none !important;
-}
-
 .pageWrapper {
   display: grid;
   grid-template-columns: 100%;
