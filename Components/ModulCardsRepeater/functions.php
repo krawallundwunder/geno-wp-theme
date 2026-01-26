@@ -121,28 +121,32 @@ function getACFLayout()
         'name' => 'optionsTab',
         'type' => 'tab',
         'placement' => 'top',
-        'endpoint' => 0,
       ],
       [
-        'label' => '',
-        'name' => 'options',
-        'type' => 'group',
-        'layout' => 'row',
-        'sub_fields' => [
-          [
-            'label' => __('Bildformat', 'flynt'),
-            'instructions' => __('<strong>Was macht diese Einstellung?</strong><br>
-                                        Bestimmt die Form aller Bilder (z.B. breiter oder höher).<br><br>', 'flynt'),
-            'name' => 'aspectRatio',
-            'type' => 'select',
-            'choices' => [
-              '4:3' => 'Klassisch (4:3) - Standard Foto',
-              '16:9' => 'Breitbild (16:9) - Video Format [Standard]',
-            ],
-            'default_value' => '16:9',
-            'ui' => 1,
-          ],
+        'label' => __('Text im Kopfbereich', 'flynt'),
+        'name' => 'textAlign',
+        'type' => 'button_group',
+        'instructions' => __('Lege fest, wie der Text oberhalb des Moduls ausgerichtet werden soll.', 'flynt'),
+        'choices' => [
+          'text-start' => __('Links', 'flynt'),
+          'text-center' => __('Zentriert', 'flynt'),
         ],
+        'default_value' => 'text-start',
+        'allow_null' => 0,
+        'return_format' => 'value',
+        'layout' => 'horizontal',
+      ],
+      [
+        'label' => __('Bildformat', 'flynt'),
+        'instructions' => __('<strong>Was macht diese Einstellung?</strong><br> Bestimmt die Form aller Bilder (z.B. breiter oder höher).<br><br>', 'flynt'),
+        'name' => 'aspectRatio',
+        'type' => 'select',
+        'choices' => [
+          '4:3' => 'Klassisch (4:3) - Standard Foto',
+          '16:9' => 'Breitbild (16:9) - Video Format [Standard]',
+        ],
+        'default_value' => '16:9',
+        'ui' => 1,
       ],
     ],
   ];

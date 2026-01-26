@@ -48,7 +48,7 @@ add_filter('Flynt/addComponentData?name=ModulTextImage', function ($data) {
 function getACFLayout(): array
 {
   return [
-    'name' => 'modulTextImage',
+    'name' => 'ModulTextImage',
     'label' => __('Modul : Text & Bild', 'flynt'),
     'sub_fields' => [
       [
@@ -120,7 +120,7 @@ function getACFLayout(): array
           [
             'label' => __('Bildformat', 'flynt'),
             'instructions' => __('<strong>Was macht diese Einstellung?</strong><br>
-                                  Bestimmt die Form aller Bilder (z.B. breiter oder höher).<br><br>', 'flynt'),
+              Bestimmt die Form aller Bilder (z.B. breiter oder höher).<br><br>', 'flynt'),
             'name' => 'aspectRatio',
             'type' => 'select',
             'choices' => [

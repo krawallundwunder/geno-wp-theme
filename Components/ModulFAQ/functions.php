@@ -15,7 +15,7 @@ add_filter('Flynt/addComponentData?name=ModulFAQ', function ($data) {
 function getACFLayout(): array
 {
   return [
-    'name' => 'modulFAQ',
+    'name' => 'ModulFAQ',
     'label' => __('Modul: Fragen und Antworten ', 'flynt'),
     'sub_fields' => [
       [
@@ -79,6 +79,18 @@ function getACFLayout(): array
         'type' => 'tab',
         'placement' => 'top',
         'endpoint' => 0,
+      ],
+      [
+        'label' => __('Text im Kopfbereich', 'flynt'),
+        'name' => 'textAlign',
+        'type' => 'select',
+        'choices' => [
+          'start' => __('Links', 'flynt'),
+          'center' => __('Zentriert', 'flynt'),
+        ],
+        'default_value' => 'start',
+        'instructions' => __('Lege fest, wie der Text oberhalb des Moduls ausgerichtet werden soll.', 'flynt'),
+        'required' => 1,
       ],
       [
         'label' => __('Layout', 'flynt'),

@@ -32,7 +32,7 @@ add_filter('Flynt/addComponentData?name=ModulContactLocation', function ($data) 
 function getACFLayout()
 {
   return [
-    'name' => 'modulContactLocation',
+    'name' => 'ModulContactLocation',
     'label' => __('Modul: Kontakt & Standorte', 'flynt'),
     'sub_fields' => [
       [
@@ -210,6 +210,18 @@ function getACFLayout()
           'Kontakt' => __('Kontakt', 'flynt'),
           'Standorte' => __('Standorte', 'flynt'),
         ],
+      ],
+      [
+        'label' => __('Text im Kopfbereich', 'flynt'),
+        'name' => 'textAlign',
+        'type' => 'select',
+        'choices' => [
+          'text-start' => __('Links', 'flynt'),
+          'text-center' => __('Zentriert', 'flynt'),
+        ],
+        'default_value' => 'text-start',
+        'instructions' => __('Lege fest, wie der Text oberhalb des Moduls ausgerichtet werden soll.', 'flynt'),
+        'required' => 1,
       ],
       [
         'label' => __('Kontakt-Layout', 'flynt'),
