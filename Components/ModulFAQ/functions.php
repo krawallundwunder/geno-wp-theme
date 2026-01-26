@@ -81,6 +81,18 @@ function getACFLayout(): array
         'endpoint' => 0,
       ],
       [
+        'label' => __('Text im Kopfbereich', 'flynt'),
+        'name' => 'textAlign',
+        'type' => 'select',
+        'choices' => [
+          'start' => __('Links', 'flynt'),
+          'center' => __('Zentriert', 'flynt'),
+        ],
+        'default_value' => 'start',
+        'instructions' => __('Lege fest, wie der Text oberhalb des Moduls ausgerichtet werden soll.', 'flynt'),
+        'required' => 1,
+      ],
+      [
         'label' => __('Layout', 'flynt'),
         'instructions' => __('Wähle das Layout der FAQ-Items.', 'flynt'),
         'name' => 'layoutType',

@@ -117,6 +117,23 @@ function getACFLayout()
         'maxlength' => 750,
         'instructions' => __('Beschreibung oder Einleitungstext zum Inhalt (max. 750 Zeichen).', 'flynt'),
       ],
+      [
+        'label' => __('Einstellungen', 'flynt'),
+        'name' => 'optionsTab',
+        'type' => 'tab',
+        'placement' => 'top',
+      ],
+      [
+        'label' => __('Text Ausrichtung', 'flynt'),
+        'name' => 'textAlign',
+        'type' => 'button_group',
+        'instructions' => __('Lege fest, wie der Text oberhalb des Moduls ausgerichtet werden soll.', 'flynt'),
+        'choices' => [
+          'text-start' => __('Links', 'flynt'),
+          'text-center' => __('Zentriert', 'flynt'),
+        ],
+        'default_value' => 'text-start',
+      ],
     ],
   ];
 }

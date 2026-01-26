@@ -5,7 +5,7 @@
 
 			{# Header Section #}
 			{% if tag or title or description %}
-				{% include "templates/_partials/headings.twig" with { tag, title, description, textAlign: textAlign ? 'text-' ~ textAlign : null } %}
+				{% include "templates/_partials/headings.twig" with { tag, title, description, textAlign } %}
 			{% endif %}
 
 			{# Display Grouped Team Members #}

@@ -109,7 +109,7 @@ function getACFLayout(): array
         'label' => __('Spalten', 'flynt'),
         'name' => 'columns',
         'type' => 'repeater',
-        'instructions' => __('Füge zwischen 2 und 5 Spalten hinzu.', 'flynt'),
+        'instructions' => __('Füge zwischen 2 und 4 Spalten hinzu.', 'flynt'),
         'layout' => 'row',
         'min' => 2,
         'max' => 4,
@@ -186,9 +186,9 @@ function getACFLayout(): array
         'layout' => 'row',
         'sub_fields' => [
           [
-            'label' => __('Textausrichtung', 'flynt'),
+            'label' => __('Text im Kopfbereich', 'flynt'),
             'name' => 'textAlignment',
-            'instructions' => __('Ausrichtung des Textes innerhalb der Spalten.', 'flynt'),
+            'instructions' => __('Lege fest, wie der Text oberhalb des Moduls ausgerichtet werden soll.', 'flynt'),
             'type' => 'select',
             'choices' => [
               'start' => __('Links', 'flynt'),

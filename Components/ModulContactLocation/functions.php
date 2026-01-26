@@ -212,7 +212,7 @@ function getACFLayout()
         ],
       ],
       [
-        'label' => __('Text Ausrichtung', 'flynt'),
+        'label' => __('Text im Kopfbereich', 'flynt'),
         'name' => 'textAlign',
         'type' => 'select',
         'choices' => [
@@ -220,7 +220,7 @@ function getACFLayout()
           'text-center' => __('Zentriert', 'flynt'),
         ],
         'default_value' => 'text-start',
-        'instructions' => __('Wählen Sie die Ausrichtung des Textes.', 'flynt'),
+        'instructions' => __('Lege fest, wie der Text oberhalb des Moduls ausgerichtet werden soll.', 'flynt'),
         'required' => 1,
       ],
       [

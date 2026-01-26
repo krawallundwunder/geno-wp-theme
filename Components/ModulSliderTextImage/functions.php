@@ -130,9 +130,10 @@ function getACFLayout(): array
         'layout' => 'row',
         'sub_fields' => [
           [
-            'label' => 'Text Ausrichtung',
+            'label' => __('Text im Kopfbereich', 'flynt'),
             'name' => 'textAlign',
             'type' => 'button_group',
+            'instructions' => __('Lege fest, wie der Text oberhalb des Moduls ausgerichtet werden soll.', 'flynt'),
             'choices' => [
               'text-start' => __('Links', 'flynt'),
               'text-center' => __('Zentriert', 'flynt'),
