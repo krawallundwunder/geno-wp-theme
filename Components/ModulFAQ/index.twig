@@ -16,11 +16,12 @@
 							<details class="group border-b border-gray-200" id="faq-{{ loop.index0 }}">
 								<summary class="flex cursor-pointer items-start justify-between p-6 list-none transition-colors">
 									<div class="flex items-start">
-										<iconify-icon icon="lucide:circle-question-mark" class="w-6 h-6 mr-2 transition-transform text-primary place-content-center" aria-hidden="true"></iconify-icon>
+										<iconify-icon icon="lucide:circle-question-mark" class="text-2xl mr-2 transition-transform text-primary align-middle" aria-hidden="true"></iconify-icon>
+										<span class="text-lg font-medium text-gray-900">{{ item.question }}</span>
 									</div>
 
 									{# Icon Toggle (Rotates when open) #}
-									<iconify-icon icon="lucide:plus" class="ml-4 shrink-0 transition-transform group-open:rotate-45 text-primary group-open:text-gray-400 text-xl place-content-center" aria-hidden="true"></iconify-icon>
+									<iconify-icon icon="lucide:plus" class="text-2xl ml-4 shrink-0 transition-transform group-open:rotate-45 text-primary group-open:text-gray-400 align-middle" aria-hidden="true"></iconify-icon>
 								</summary>
 								<div class="px-6 pb-6 pl-8 text-gray-600 leading-relaxed">
 									<div class="pl-9">{{ item.answer|raw }}</div>
@@ -34,8 +35,8 @@
 					<div class="grid gap-6 {{ gridClass }}">
 						{% for item in faqItems %}
 							<div class="bg-primary/10 border border-primary rounded-lg p-6 shadow-sm">
-								<div class="flex items-start mb-4 text-gray-900">
-									<iconify-icon icon="lucide:circle-question-mark" class="w-6 h-6 mr-2 transition-transform text-primary place-content-center" aria-hidden="true"></iconify-icon>
+								<div class="flex items-start text-gray-900">
+									<iconify-icon icon="lucide:circle-question-mark" class="text-2xl mr-2 transition-transform text-primary align-middle" aria-hidden="true"></iconify-icon>
 									<h3 class="text-lg font-semibold">{{ item.question }}</h3>
 								</div>
 							</div>

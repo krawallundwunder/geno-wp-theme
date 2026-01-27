@@ -18,7 +18,7 @@
 			{% if has_children %}
 				<a href="{{ item.link|e('esc_url') }}" class="relative flex items-center font-semibold text-[15px] tracking-tight transition-all duration-300 {{ parent_should_be_active ? 'text-primary' : 'text-slate-700 group-hover:text-primary' }}" {{ item.is_external or item.is_target_blank ? ' target="_blank" rel="noopener noreferrer"' }}>
 					<span>{{ item.title }}</span>
-					<iconify-icon icon="lucide:chevron-down" class="h-7 w-7 ms-1 place-content-center inline-block transition-transform duration-200 group-hover:rotate-180"></iconify-icon>
+					<iconify-icon icon="lucide:chevron-down" class="h-7 w-7 ms-1 align-middle inline-block transition-transform duration-200 group-hover:rotate-180"></iconify-icon>
 					<span class="absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 {{ parent_should_be_active ? 'w-full' : 'w-0 group-hover:w-full' }}"></span>
 				</a>
 
