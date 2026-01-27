@@ -16,7 +16,7 @@ add_filter('Flynt/addComponentData?name=ModulSliderTextImage', function (array $
 function getACFLayout(): array
 {
   return [
-    'name' => 'modulSliderTextImage',
+    'name' => 'ModulSliderTextImage',
     'label' => __('Modul: Slider Text Image', 'flynt'),
     'sub_fields' => [
       [
@@ -129,6 +129,20 @@ function getACFLayout(): array
         'type' => 'group',
         'layout' => 'row',
         'sub_fields' => [
+          [
+            'label' => __('Text im Kopfbereich', 'flynt'),
+            'name' => 'textAlign',
+            'type' => 'button_group',
+            'instructions' => __('Lege fest, wie der Text oberhalb des Moduls ausgerichtet werden soll.', 'flynt'),
+            'choices' => [
+              'text-start' => __('Links', 'flynt'),
+              'text-center' => __('Zentriert', 'flynt'),
+            ],
+            'default_value' => 'text-start',
+            'allow_null' => 0,
+            'return_format' => 'value',
+            'layout' => 'horizontal',
+          ],
 
           [
             'label' => __('Autoplay aktivieren', 'flynt'),

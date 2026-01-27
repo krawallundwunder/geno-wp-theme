@@ -88,7 +88,7 @@ add_filter('Flynt/addComponentData?name=ModulTeamSection', function ($data) {
 function getACFLayout()
 {
   return [
-    'name' => 'modulTeamSection',
+    'name' => 'ModulTeamSection',
     'label' => 'Modul: Team Bereich',
     'sub_fields' => [
       [
@@ -116,6 +116,23 @@ function getACFLayout()
         'type' => 'textarea',
         'maxlength' => 750,
         'instructions' => __('Beschreibung oder Einleitungstext zum Inhalt (max. 750 Zeichen).', 'flynt'),
+      ],
+      [
+        'label' => __('Einstellungen', 'flynt'),
+        'name' => 'optionsTab',
+        'type' => 'tab',
+        'placement' => 'top',
+      ],
+      [
+        'label' => __('Text Ausrichtung', 'flynt'),
+        'name' => 'textAlign',
+        'type' => 'button_group',
+        'instructions' => __('Lege fest, wie der Text oberhalb des Moduls ausgerichtet werden soll.', 'flynt'),
+        'choices' => [
+          'text-start' => __('Links', 'flynt'),
+          'text-center' => __('Zentriert', 'flynt'),
+        ],
+        'default_value' => 'text-start',
       ],
     ],
   ];

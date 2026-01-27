@@ -5,7 +5,7 @@ namespace Flynt\Components\ModuliFrame;
 function getACFLayout(): array
 {
   return [
-    'name' => 'moduliFrame',
+    'name' => 'ModuliFrame',
     'label' => __('Modul: OpenGeno Einbettung', 'flynt'),
     'sub_fields' => [
       [
@@ -49,6 +49,18 @@ function getACFLayout(): array
         'type' => 'tab',
       ],
       [
+        'label' => __('Text im Kopfbereich', 'flynt'),
+        'name' => 'textAlign',
+        'type' => 'select',
+        'choices' => [
+          'start' => __('Links', 'flynt'),
+          'center' => __('Zentriert', 'flynt'),
+        ],
+        'default_value' => 'start',
+        'instructions' => __('Lege fest, wie der Text oberhalb des Moduls ausgerichtet werden soll.', 'flynt'),
+        'required' => 1,
+      ],
+      [
         'label' => __('Minimale Höhe (in px)', 'flynt'),
         'instructions' => __('Start-Höhe des iFrames. Wichtig, falls das automatische Anpassen nicht funktioniert.', 'flynt'),
         'name' => 'minHeight',
@@ -63,6 +75,7 @@ function getACFLayout(): array
         'default_value' => 0,
         'ui' => 1,
       ],
+
     ],
   ];
 }
