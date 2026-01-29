@@ -66,7 +66,7 @@ function getACFLayout(): array
             ],
             'default_value' => 'default',
             'wrapper' => [
-              'width' => '50'
+              'width' => '50%'
             ],
           ],
         ],
