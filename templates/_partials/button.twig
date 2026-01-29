@@ -22,17 +22,14 @@
 <{{tag}} {% if tag == 'a' %} href="{{ link|default('#') }}" {{ targetStr }} {% if disabled %} role="link" aria-disabled="true" tabindex="-1" {% endif %} {% else %} type="{{ buttonType }}" {% if disabled %} disabled {% endif %} {% endif %} class="{{ baseClasses }} {{ selectedSize }} {{ selectedVariant }} {{ customClasses }}" {% if ariaLabel %} aria-label="{{ ariaLabel }}" {% endif %} {{ extraAttributes|default('') }}>
 
 	{% if variant == 'textBack' %}
-		<span class="transition-transform group-hover:-translate-x-1 scale-[-1]">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1" d="M5 12h14m-7-7l7 7l-7 7"/></svg>
-		</span>
+		<iconify-icon icon="lucide:arrow-left" class="w-5 h-5 mr-2 transition-transform align-middle" aria-hidden="true"></iconify-icon>
+
 	{% endif %}
 
 	<span>{{ text|default('Button') }}</span>
 
 	{% if variant == 'text' %}
-		<span class="transition-transform group-hover:translate-x-1">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1" d="M5 12h14m-7-7l7 7l-7 7"/></svg>
-		</span>
+		<iconify-icon icon="lucide:arrow-right" class="w-5 h-5 ml-2 transition-transform align-middle" aria-hidden="true"></iconify-icon>
 	{% endif %}
 
 </{{tag}}>
