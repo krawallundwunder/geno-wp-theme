@@ -49,7 +49,7 @@ function getACFLayout(): array
             'return_format' => 'array',
             'preview_size' => 'thumbnail',
             'library' => 'all',
-            'instructions' => __('Fügen Sie ein Bild für dieses Masonry-Element hinzu.', 'flynt'),
+            'instructions' => __('Bilder werden nach verfügbarem Platz angeordnet, nicht strikt nach Reihenfolge deiner hinzugefügten Bilder.<br> Große Formate beeinflussen die Position.<br> Beispiel: Soll dein erstes Bild 1x1 sein und dein zweites 2x1 sind die ersten 3 Spalten verbraucht.', 'flynt'),
             'wrapper' => [
               'width' => '50%'
             ],
